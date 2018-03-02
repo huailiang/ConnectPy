@@ -35,16 +35,23 @@ public class ConnectPy : MonoBehaviour
         }
         if (GUI.Button(new Rect(20, 130, 120, 60), "HELLO"))
         {
-            SendString("hello world " + index++);
+            if (init)
+            {
+                SendString("hello world " + index++);
+            }
         }
         if (GUI.Button(new Rect(20, 240, 120, 60), "ACTION"))
         {
-            SendString("ACTION");
-            Receive();
+            if (init)
+            {
+                SendString("ACTION");
+                Receive();
+            }
         }
         if (GUI.Button(new Rect(20, 350, 120, 60), "EXIT"))
         {
             SendString("EXIT");
+            OnApplicationQuit();
         }
     }
 
@@ -77,7 +84,7 @@ public class ConnectPy : MonoBehaviour
         Debug.Log(envMessage);
         sender.Send(Encoding.ASCII.GetBytes(envMessage));
     }
-    
+
     private void SendString(string str)
     {
         try
@@ -85,7 +92,7 @@ public class ConnectPy : MonoBehaviour
             Debug.Log("send:" + str);
             sender.Send(AppendLength(Encoding.ASCII.GetBytes(str)));
         }
-        catch(SocketException e)
+        catch (SocketException e)
         {
             Debug.LogWarning(e.Message);
         }
@@ -103,13 +110,16 @@ public class ConnectPy : MonoBehaviour
     {
         int location = sender.Receive(messageHolder);
         string message = Encoding.ASCII.GetString(messageHolder, 0, location);
-        Debug.Log("recv: "+message);
+        Debug.Log("recv: " + message);
     }
 
     private void OnApplicationQuit()
     {
-        Debug.Log("Socket is closing");
-        sender.Close();
+        if (init && sender != null)
+        {
+            Debug.Log("Socket is closing");
+            sender.Close();
+        }
     }
 
 }
