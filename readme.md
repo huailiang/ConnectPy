@@ -9,7 +9,7 @@ unity官方的mechine-learning 例子，就是遵循这样的原则。unity例�
 
 本示例以最简洁的代码，展示了unity和python之间的通信。
 
-<img src="img/img.jpg">
+<img src="img/img.gif">
 
 操作步骤如下：
 
