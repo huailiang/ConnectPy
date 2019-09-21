@@ -1,12 +1,3 @@
-<p align="center">
-     <a href="https://huailiang.github.io/" target="_blank">
-    	<img src="https://huailiang.github.io/img/python.jpeg" width="200" height="140">
-    </a>
-    <a href="https://www.unity3d.com" target="_blank">
-    	<img src="https://huailiang.github.io/img/unity.jpeg" width="200" height="150">
-    </a>
-</p>
-
 
 <b>Unity和Python之间Socket通信</b>
 
